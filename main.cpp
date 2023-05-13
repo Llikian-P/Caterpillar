@@ -55,6 +55,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
         // Updates the changes
         SDL_RenderPresent(renderer);
 
+        // Handles closing the window
         while(SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT || keyboard[SDL_SCANCODE_ESCAPE])
