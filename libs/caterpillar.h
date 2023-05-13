@@ -13,7 +13,7 @@
 
 #define MAXP 100 // Max number of particles in a caterpillar
 #define MASS 10 // Mass of particles
-#define MAXC 20 // Max number of caterpillars
+#define MAXC 100 // Max number of caterpillars
 #define ANIMS 5 // Current number of animations
 
 #define FRICTION 1.f // Coefficient of speed loss when there is a collision

@@ -16,3 +16,39 @@ SDL_Rect makeRect(const int &x, const int &y, const int &w, const int &h)
 
     return rect;
 }
+
+void circle(SDL_Renderer* renderer, const Complex& center, const float& radius, const Color& color)
+{
+    Complex z;
+
+    for(int i = 0 ; i < 360 ; ++i)
+    {
+        z = center + makeComplexExp(radius, i);
+        setColor(renderer, color);
+        SDL_RenderDrawPoint(renderer, z.x, z.y);
+    }
+}
+
+void circleFill(SDL_Renderer* renderer, const Complex& center, const float& radius, const Color& color)
+{
+    Complex z;
+
+    for(int i = center.x - radius; i < center.x + radius ; ++i)
+    {
+        for(int j = center.y - radius ; j < center.y + radius ; ++j)
+        {
+            z = makeComplex(i - center.x,  j - center.y);
+            if(module(z) <= radius)
+            {
+                setColor(renderer, color);
+                SDL_RenderDrawPoint(renderer, i, j);
+            }
+        }
+    }
+}
+
+void outlinedCircle(SDL_Renderer* renderer, const Complex& center, const Color& outline, const Color& filling, const float& radius)
+{
+    circleFill(renderer, center, radius, filling);
+    circle(renderer, center, radius, outline);
+}

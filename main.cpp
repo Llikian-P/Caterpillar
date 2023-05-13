@@ -14,12 +14,14 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // Initializes the window and the renderer
     SDL_Window* window = SDL_CreateWindow("Learning SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DX, DY, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
+    // Initializes other variables
     SDL_Event event;
     const Uint8* keyboard;
 
     bool stop = false, enableClear = true, enableDraw = true;
-    int np = 10, n = 5, rmin = 10, rmax = 20;
+    int np = 10, n = 5, rmin = 5, rmax = 10;
 
     World w = makeWorld(np, n, rmin, rmax, 0);
 

@@ -1,4 +1,5 @@
 #include "caterpillar.h"
+#include "graphic_functions.h"
 
 // STRUCTURES INITIALISATION
 Particle makeParticle(const Complex& z, const Complex& v, const int& rmin, const int& rmax)
@@ -152,9 +153,10 @@ void updateWorld(World& w)
 //// STRUCTURES DRAW
 void drawParticle(const Particle& p, const Color& color, SDL_Renderer* renderer)
 {
-    setColor(renderer, color);
-    const SDL_Rect rect = makeRect(p.z.x - p.r / 2 , p.z.y - p.r / 2, p.r, p.r);
-    SDL_RenderFillRect(renderer, &rect);
+//    setColor(renderer, WHITE);
+//    SDL_RenderDrawPoint(renderer, p.z.x, p.z.y);
+    Color filling = makeColor(color.r, color.g, color.b, 255/5);
+    outlinedCircle(renderer, p.z, color, filling, p.r);
 }
 
 void drawCaterpillar(const Caterpillar& c, SDL_Renderer* renderer)
