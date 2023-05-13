@@ -1,4 +1,4 @@
-#include "C:\_dev\SDL2\include\SDL.h"
+#include <SDL.h>
 #include <iostream>
 #include "libs/color_functions.h"
 #include "libs/caterpillar.h"
