@@ -195,6 +195,6 @@ int randint(const int& a, const int& b)
 
 float randfloat(const float &a, const float &b)
 {
-    return a + std::rand() / (RAND_MAX / (b - a + 1));
+    return a + std::rand() / (RAND_MAX / (b - a));
 }
 #pragma clang diagnostic pop

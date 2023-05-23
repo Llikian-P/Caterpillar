@@ -27,7 +27,9 @@ typedef struct
     Complex v; // Speed
     Complex F; // Force
     int r; // Radius
-    int h; // Hue
+    float h; // Hue
+    float s; // Saturation
+    float l; // Light
 } Particle;
 
 typedef struct

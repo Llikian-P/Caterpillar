@@ -10,7 +10,10 @@ Particle makeParticle(const Complex& z, const Complex& v, const int& rmin, const
     p.v = v;
     p.F = ORIGIN;
     p.r = randint(rmin, rmax); // Random radius between rmin and rmax
-    p.h = randint(0, 360); // Random hue
+
+    p.h = randfloat(0, 360);
+    p.s = randfloat(100, 100);
+    p.l = randfloat(50, 50);
 
     return p;
 }
@@ -166,6 +169,8 @@ void drawCaterpillar(const Caterpillar& c, SDL_Renderer* renderer)
     for (int i = c.n - 1; i >= 0; --i)
     {
         color = hsl((float)i * 360 / (float)c.n, 100, 50);
+//        color = hsl(0, 0, (float)i * 100 / (float)c.n);
+//        color = hsl(c.p[i].h, c.p[i].s, c.p[i].l);
         drawParticle(c.p[i], color, renderer);
     }
 }

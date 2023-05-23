@@ -14,7 +14,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[])
     // Initializes the window and the renderer
     SDL_Window* window = SDL_CreateWindow("Learning SDL", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, DX, DY, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); // Allows transparency
 
     // Initializes other variables
     SDL_Event event;
