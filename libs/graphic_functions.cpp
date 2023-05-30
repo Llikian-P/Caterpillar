@@ -17,7 +17,7 @@ SDL_Rect makeRect(const int &x, const int &y, const int &w, const int &h)
     return rect;
 }
 
-void circle(SDL_Renderer* renderer, const Complex& center, const float& radius, const Color& color)
+void circle(SDL_Renderer* renderer, const Complex& center, const int& radius, const Color& color)
 {
     Complex z;
 
@@ -29,25 +29,29 @@ void circle(SDL_Renderer* renderer, const Complex& center, const float& radius, 
     }
 }
 
-void circleFill(SDL_Renderer* renderer, const Complex& center, const float& radius, const Color& color)
+void circleFill(SDL_Renderer* renderer, const Complex& center, const int& radius, const Color& color)
 {
-    Complex z;
+    int x = 0, y = radius;
+    int a, b, c, d;
 
-    for(int i = center.x - radius; i < center.x + radius ; ++i)
+    setColor(renderer, color);
+    
+    while(x <= radius)
     {
-        for(int j = center.y - radius ; j < center.y + radius ; ++j)
-        {
-            z = makeComplex(i - center.x,  j - center.y);
-            if(module(z) <= radius)
-            {
-                setColor(renderer, color);
-                SDL_RenderDrawPoint(renderer, i, j);
-            }
-        }
+        a = (int)center.x + x;
+        b = (int)center.y + y;
+        c = (int)center.x - x;
+        d = (int)center.y - y;
+        
+        SDL_RenderDrawLine(renderer, a, b, a, d);
+        SDL_RenderDrawLine(renderer, c, b, c, d);
+        
+        ++x;
+        y = (int)sqrt(radius*radius - x*x);
     }
 }
 
-void outlinedCircle(SDL_Renderer* renderer, const Complex& center, const Color& outline, const Color& filling, const float& radius)
+void outlinedCircle(SDL_Renderer* renderer, const Complex& center, const Color& outline, const Color& filling, const int& radius)
 {
     circleFill(renderer, center, radius, filling);
     circle(renderer, center, radius, outline);
