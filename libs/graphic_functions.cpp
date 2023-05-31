@@ -19,20 +19,31 @@ SDL_Rect makeRect(const int &x, const int &y, const int &w, const int &h)
 
 void circle(SDL_Renderer* renderer, const Complex& center, const int& radius, const Color& color)
 {
-    Complex z;
+    int x = 0, y = radius;
 
-    for(int i = 0 ; i < 360 ; ++i)
+    setColor(renderer, color);
+
+    while(x <= y)
     {
-        z = center + makeComplexExp(radius, i);
-        setColor(renderer, color);
-        SDL_RenderDrawPoint(renderer, z.x, z.y);
+        SDL_Point points[8] = {{x, y}, {-x, y}, {x, -y}, {-x, -y},
+                               {y, x}, {-y, x}, {y, -x}, {-y, -x}};
+
+        for(SDL_Point &point : points)
+        {
+            point.x += (int)center.x;
+            point.y += (int)center.y;
+        }
+
+        SDL_RenderDrawPoints(renderer, points, 8);
+
+        ++x;
+        y = (int)sqrt(radius*radius - x*x);
     }
 }
 
 void circleFill(SDL_Renderer* renderer, const Complex& center, const int& radius, const Color& color)
 {
-    int x = 0, y = radius;
-    int a, b, c, d;
+    int x = 0, y = radius, a, b, c, d;
 
     setColor(renderer, color);
     
